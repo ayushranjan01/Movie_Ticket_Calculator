@@ -1,0 +1,87 @@
+# Name: Ayush Ranjan
+# Student Number: 742883
+
+totalcost = 0
+avgage = 0
+tax = 0.13
+priceforchildren = 8.50
+priceforadults = ((tax * 11.50) + 11.50) 
+priceforseniors = ((tax * 9.50) + 9.50)
+#Defines all the variables in this program.
+#Total cost and average age are set to 0 as they will be calculated after input
+#All prices are calculated with tax
+
+def spacing():
+    print ("")
+    print ("")
+#Defines spacing for the program in order to make output appear orderly
+#whenever the spacing function is called in the program, spaces are outputed
+    
+restartprogram = "y"
+validAnswers = ["y","Y","yes","YES","yeS","YeS"]
+while restartprogram in validAnswers:
+#Conditional loop: if user types in any of the valid answers when prompted
+#the program will be restarted
+
+    spacing()
+    print("Welcome to our cinema!")
+    print("Ticket costs are: 8.50 for 14 and under (and no tax!)")
+    print("11.50 for 15-64.")
+    print("9.50 for 65 and over.")
+    print ("All ticket prices are pre-tax.")
+    spacing()
+#Outputs information for the user such as ticket prices based on age
+    
+    numberOfPeople = 0
+    while (True):
+        numberOfPeople = input("How many people are there in your group?")
+        try:
+            numberOfPeople = int(numberOfPeople)
+            if (numberOfPeople < 1):
+                print("Please enter a valid number.")
+                continue
+            break
+        except:
+            print("Please enter a valid number")
+            continue
+#Conditional Loop: asks user for the number of people in their group, rejects
+#invalid answers
+        
+    spacing()
+    i = 0
+    while (i < numberOfPeople):
+        age = int(input("What is your age?"))
+        i += 1
+        if ((age < 1) or (age > 120)):
+            print("Your input is invalid, please re enter your age.")
+            i -= 1
+            continue
+
+        elif ((age > 1) and (age <= 14)):
+            print("The cost of your ticket is", priceforchildren)
+            avgage = avgage + age
+            totalcost = totalcost + priceforchildren
+            spacing()
+
+        elif (age >= 15) and (age <= 64):
+            print("The cost of your ticket is", priceforadults)
+            avgage = avgage + age
+            totalcost = totalcost + priceforadults
+            spacing()
+
+        elif (age > 64):
+            print("The cost of your ticket is", priceforseniors)
+            avgage = avgage + age
+            totalcost = totalcost + priceforseniors
+            spacing()
+#Conditional loop: the loop runs one time for each person in the group. Asks user for
+#their age, rejects an invalid age and prompts them again. Outputs the cost for
+#their ticket, calculates average age and total cost for the group.
+            
+    avgage = avgage/numberOfPeople
+    print("The average age is", avgage)
+    print("The total cost for your group is", totalcost)
+    spacing()
+    restartprogram = input("Would you like to restart the program?")
+#Prints out the average age and total cost for the group.
+#Finally, it asks the user if they want to restart the program.
